@@ -1,10 +1,18 @@
 from django.db import models
+from apps.users.models import User
 
 # Create your models here.
 class ToDo(models.Model):
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        related_name="user_todo",
+        verbose_name="Пользователь"
+    )
     title = models.CharField(
         max_length=100,
-        verbose_name="Название"
+        verbose_name="Название",
+        unique=True
     )
     description = models.CharField(
         max_length=255,

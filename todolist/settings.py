@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     #django rest jwt
     'rest_framework_simplejwt',
 
+    #docs
+    'drf_yasg',
+
     #apps
     'apps.todo',
     'apps.users',

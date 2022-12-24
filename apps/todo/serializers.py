@@ -10,4 +10,4 @@ class ToDoSerializer(serializers.ModelSerializer):
 class ToDoCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ToDo
-        fields = ('title', 'description', 'image')
+        fields = ('user', 'title', 'description', 'image')

@@ -12,7 +12,6 @@ class ToDo(models.Model):
     title = models.CharField(
         max_length=100,
         verbose_name="Название",
-        unique=True
     )
     description = models.CharField(
         max_length=255,
@@ -37,3 +36,4 @@ class ToDo(models.Model):
     class Meta:
         verbose_name = "Список дел"
         verbose_name_plural = "Список дел"
+        unique_together = ('user', 'title')

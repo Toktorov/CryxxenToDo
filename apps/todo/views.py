@@ -37,3 +37,12 @@ class TodoUpdateAPIView(UpdateAPIView):
 class ToDoDestroyAPIView(DestroyAPIView):
     queryset = ToDo.objects.all()
     permission_classes = (IsOwnerPermissions, )
+
+class ToDoAllDestroyAPIView(DestroyAPIView):
+    queryset = ToDo.objects.all()
+    permission_classes = (IsOwnerPermissions, )
+
+    def delete(self, request, *args, **kwargs):
+        todo = ToDo.objects.filter(user=request.user)
+        todo = [t for t in todo.delete()]
+        return Response({'delete' : 'Все такски удалены'})

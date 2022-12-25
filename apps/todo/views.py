@@ -1,16 +1,19 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from apps.todo.models import ToDo
 from apps.todo.serializers import ToDoSerializer, ToDoCreateSerializer
 from apps.todo.permissions import IsOwnerPermissions
+from rest_framework import filters
 
 # Create your views here.
 class TodoAPIView(ListAPIView):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
     permission_classes = (IsAdminUser, )
+    filter_backends = [filters.SearchFilter]
+    search_fields = ('title', 'description')
 
 class ToDoCreateAPIView(CreateAPIView):
     queryset = ToDo.objects.all()
